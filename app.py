@@ -5,10 +5,13 @@ from flask.ext.api.exceptions import ParseError
 from marshmallow import ValidationError
 
 import schema
+import models
 
 
 app = FlaskAPI(__name__)
+models.db.init_app(app)
 
+app.config.from_object('settings.Config')
 
 app.config['DEFAULT_RENDERERS'] = [
     'flask.ext.api.renderers.JSONRenderer',
